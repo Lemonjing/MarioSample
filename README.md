@@ -1,6 +1,6 @@
 # mario-sample
 
-这是 [如何设计一个Web框架](https://github.com/biezhi/jb/blob/master/mvc/SUMMARY.md) 源码的一个演示例子。
+这是 [如何设计一个Web框架](https://github.com/lemonjing/mvc-mario) 源码的一个演示例子。
 
 ## 如何运行
 
