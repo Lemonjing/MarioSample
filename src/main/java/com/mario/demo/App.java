@@ -16,6 +16,7 @@ public class App implements Bootstrap {
 		mario.addRoute("/hello", "hello", index);
 		mario.addRoute("/html", "html", index);
 		
+		mario.addRoute("/users/member", "users", userController);
 		mario.addRoute("/users", "users", userController);
 		mario.addRoute("/user/add", "show_add", userController);
 		mario.addRoute("/user/save", "save", userController);
