@@ -1,7 +1,7 @@
 package com.mario.demo;
 
-import com.junicorn.mario.Bootstrap;
-import com.junicorn.mario.Mario;
+import com.junicorn.mario.common.Bootstrap;
+import com.junicorn.mario.common.Mario;
 import com.junicorn.mario.db.MarioDb;
 import com.mario.demo.controller.Index;
 import com.mario.demo.controller.UserController;
@@ -16,7 +16,6 @@ public class App implements Bootstrap {
 		mario.addRoute("/hello", "hello", index);
 		mario.addRoute("/html", "html", index);
 		
-		mario.addRoute("/users/member", "users", userController);
 		mario.addRoute("/users", "users", userController);
 		mario.addRoute("/user/add", "show_add", userController);
 		mario.addRoute("/user/save", "save", userController);

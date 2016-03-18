@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.junicorn.mario.MarioContext;
+import com.junicorn.mario.common.MarioContext;
 import com.junicorn.mario.db.MarioDb;
 import com.junicorn.mario.servlet.wrapper.Request;
 import com.junicorn.mario.servlet.wrapper.Response;
@@ -25,7 +25,7 @@ public class UserController {
 	 */
 	public void users(Request request, Response response){
 		List<User> users = MarioDb.getList("select * from t_user", User.class);
-		request.attr("users", users);
+		request.setAttr("users", users);
 		response.render("users");
 	}
 	
@@ -50,7 +50,7 @@ public class UserController {
 		String date = request.query("birthday");
 		
 		if(null == name || null == age || null == date){
-			request.attr("res", "error");
+			request.setAttr("res", "error");
 			response.render("user_add");
 			return;
 		}
@@ -59,11 +59,11 @@ public class UserController {
 		
 		int res = MarioDb.insert("insert into t_user(name, age, birthday)", name, age, bir);
 		if(res > 0){
-			String ctx = MarioContext.me().getContext().getContextPath();
+			String ctx = MarioContext.getMarioContext().getServletContext().getContextPath();
 			String location = ctx + "/users";
 			response.redirect(location.replaceAll("[/]+", "/"));
 		} else {
-			request.attr("res", "error");
+			request.setAttr("res", "error");
 			response.render("user_add");
 		}
 	}
@@ -79,7 +79,7 @@ public class UserController {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("id", id);
 			User user = MarioDb.get("select * from t_user where id = :id", User.class, map);
-			request.attr("user", user);
+			request.setAttr("user", user);
 			response.render("user_edit");
 		}
 	}
@@ -95,7 +95,7 @@ public class UserController {
 		Integer age = request.queryAsInt("age");
 		
 		if(null == id || null == name || null == age ){
-			request.attr("res", "error");
+			request.setAttr("res", "error");
 			response.render("user_edit");
 			return;
 		}
@@ -107,11 +107,11 @@ public class UserController {
 		
 		int res = MarioDb.update("update t_user set name = :name, age = :age where id = :id", map);
 		if(res > 0){
-			String ctx = MarioContext.me().getContext().getContextPath();
+			String ctx = MarioContext.getMarioContext().getServletContext().getContextPath();
 			String location = ctx + "/users";
 			response.redirect(location.replaceAll("[/]+", "/"));
 		} else {
-			request.attr("res", "error");
+			request.setAttr("res", "error");
 			response.render("user_edit");
 		}
 	}
@@ -129,7 +129,7 @@ public class UserController {
 			MarioDb.update("delete from t_user where id = :id", map);
 		}
 		
-		String ctx = MarioContext.me().getContext().getContextPath();
+		String ctx = MarioContext.getMarioContext().getServletContext().getContextPath();
 		String location = ctx + "/users";
 		response.redirect(location.replaceAll("[/]+", "/"));
 	}
