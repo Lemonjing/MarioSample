@@ -1,4 +1,4 @@
-# mario-sample
+# MarioSample
 
 这是 [如何设计一个Web框架](https://github.com/Lemonjing/MarioMVC) 源码的一个演示例子。
 
