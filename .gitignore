@@ -3,7 +3,7 @@
 
 # Ada Library Information
 *.ali
-/target/
+target/
 .settings/
 .classpath
 .idea/
